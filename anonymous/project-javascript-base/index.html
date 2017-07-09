@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Projet évaluation javascript</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="styles/style.css" rel="stylesheet"/>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	</head>
+	<body>
+		<header>
+			<h1>JS 7</h1>
+			<h2>Inscription</h2>
+		</header>
+		<section id="presentation">
+			<p>
+				<em>JS 7</em> est un club très privé auquel seuls les initiés du javascript ont accès.
+				Pour pouvoir intégrer la <em>JS 7</em>, il vous faudra remplir le formulaire ci-dessous.
+			</p>
+		</section>
+		<section id="main-section">
+			<form>
+				<p class="line-form">
+					<label for="InputNom">Nom : </label><input type="text" name="nom" id="InputNom" />
+					<span class="tooltip">Veuillez entrer votre nom</span>
+				</p>
+				<p class="line-form">
+					<label for="InputPrenom">Prénom : </label><input type="text" name="prenom" id="InputPrenom" />
+					<span class="tooltip">Veuillez entrer votre prénom</span>
+				</p>
+					
+				<p class="line-form">
+					<label for="InputPassword">Mot de passe : </label><input type="password" name="password" id="InputPassword" />
+					<span class="tooltip">Veuillez entrer votre mot de passe</span>
+				</p>
+					
+				<p class="line-form">
+					<label for="InputConfirmPassword">Confirmation : </label><input type="password" name="confirmation-password" id="InputConfirmPassword" />
+					<span class="tooltip">Confirmez votre mot de passe</span>
+				</p>
+					
+				<p class="line-form">
+					<label for="InputAimeJS">J'aime le JS : </label><input type="checkbox" name="aime-js" id="InputAimeJS" />
+				</p>
+				<p class="line-form">
+					<label for="InputPhraseSecrete">Slogan secret : </label><textarea name="phrase-secrete" id="InputPhraseSecrete" data-answer="php is coming"></textarea>
+					<span class="tooltip">Veuillez entrer le slogan secret des membres de la JS 7</span>
+				</p>
+				<p class="line-form">
+					<button type="submit" name="valider">Intégrer JS 7</button>
+				</p>
+			</form>
+		</section>
+	</body>
+	<script>
+		$(function(){
+			$('input:not([type="checkbox"]), textarea')
+			.focusin(function(){
+				// $(this) ne contient que l'élément sur lequel
+				// a eu lieu l'évènement focusin
+				$(this).next('.tooltip').fadeIn();
+			})
+			.focusout(function(){
+				$(this).next('.tooltip').css('display','none');
+			});
+
+			$('form').submit(function(event){
+				// j'annule l'action par défaut de l'évènement correspondant
+				// à la validation du formulaire
+				event.preventDefault();
+				
+				$('.error-msg').remove();
+				// je récupère l'ensemble de mes inputs au sein d'une collection
+				// d'inputs ($inputs)
+				var $inputs = $('input:not([type="checkbox"]), textarea');
+
+				for(var i = 0; i < $inputs.length; i++){
+					var $currentInput = $($inputs[i]);
+
+					var valInput = $currentInput.val();
+
+					if(valInput === ''){
+						$currentInput.css('border-color','red');
+						$('<p class="error-msg">Ce champs est obligatoire</p>')
+						.insertAfter($currentInput);
+					} else {
+						$currentInput.css('border-color', 'green');
+					}
+
+				}
+
+				var $password = $('#InputPassword');
+				var $passwordConfirm = $('#InputConfirmPassword');
+				if( $password.val() !== $passwordConfirm.val() ) {
+					$passwordConfirm.css('border-color','red');
+					$('<p class="error-msg">Le mdp confirm doit être égal au mdp</p>')
+					.insertAfter($passwordConfirm);
+				}
+
+				if( ! $('#InputAimeJS').prop('checked')){
+					$('#InputAimeJS').css('border-color','red');
+					$('<p class="error-msg">Mais si !!</p>')
+					.insertAfter($('#InputAimeJS'));
+				}
+
+				var $phraseSecrete = $('#InputPhraseSecrete');
+
+				// var answer = 'php is coming';
+
+				var answer = $phraseSecrete.attr('data-answer');
+
+				if(answer !== $phraseSecrete.val()) {
+					$phraseSecrete.css('border-color','red');
+					$('<p class="error-msg">La phrase n\'est la bonne!!!</p>')
+					.insertAfter($phraseSecrete);
+				}
+
+				if($('.error-msg').length === 0){
+					$('#main-section').load('bravo.html');
+				}
+
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,134 @@
+html {
+	font-family: arial;
+	height: 100%;
+	background-color: black;
+	color: white;
+}
+
+body {
+	margin : 0;
+	padding: 0;
+}
+
+header {
+	height: 100px;
+	background-color: #333;
+	box-sizing: border-box;
+	padding: 20px 6px 20px 45px;
+	border-bottom: 1px solid gray;
+	box-shadow: 0 0 10px gray;
+}
+
+header h1 {
+	text-shadow : 1px 1px 6px black;
+	font-weight: normal;
+	margin: 0;
+	font-size: 2em;
+}
+
+header h2 {
+	text-shadow : 1px 1px 6px black;
+	font-weight: normal;
+	margin: 0;
+	font-size: 0.9em;
+}
+
+#presentation {
+	text-align: center;
+	background-color: #252525;
+	padding: 20px 6px 20px 6px;
+	font-size: 0.9em;
+	text-shadow : 1px 1px 6px black;
+}
+
+#presentation p {
+	margin: 0;
+}
+
+#presentation em {
+
+}
+
+#main-section {
+	text-align: right;
+	background-size: auto 100%;
+	background-image: url("../images/anonymous.jpg");
+	background-repeat : no-repeat;
+}
+
+#main-section form {
+	display: inline-block;
+	padding: 20px;
+	background-color: #333;
+	font-size: 0.85em;
+	border-radius: 5px;
+	margin: 20px 50px;
+	border: 1px solid gray;
+	box-shadow : 0 0 5px black inset;
+}
+
+#main-section form .line-form {
+	min-height : 30px;
+	position: relative;
+}
+
+#main-section form .line-form > * {
+	vertical-align: middle;
+}
+
+#main-section form .tooltip {
+	display: none;
+	position: absolute;
+	top: 2px;
+	left: -5px;
+	transform: translateX(-100%);
+	background: lightgray;
+	color: #222;
+	padding: 4px;
+	border-radius: 4px;
+	text-align: left;
+	box-shadow: 0 0 4px black;
+}
+
+form input, form textarea {
+	color: white;
+	background : #252525;
+	box-shadow : 0 0 5px black inset;
+	border: 1px solid gray;
+	padding : 2px;
+}
+
+form button {
+	background : #252525;
+	border-radius: 4px;
+	padding: 4px;
+	color: lightgray;
+	font-weight: bold;
+	border: 1px solid #252525;
+	cursor: pointer;
+}
+
+.error-msg {
+	right: 0;
+	margin: 0;
+	color: red;
+	font-size: 0.85em;
+}
+
+#php {
+	padding: 20px;
+	background-color: #333;
+	font-size: 0.85em;
+	border-radius: 5px;
+	border: 1px solid gray;
+	box-shadow: 0 0 5px black inset;
+	text-align: center;
+	margin: 30px auto;
+	width: 500px;
+}
+
+#php img {
+	width: 400px;
+}
+
+
